@@ -47,7 +47,10 @@ mongoose
 
 // Routes
 const userRoutes = require("./src/routes/userRoutes");
+const authRoutes = require("./src/routes/authRoutes")
+
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // Test route
 app.get("/", (req, res) => {

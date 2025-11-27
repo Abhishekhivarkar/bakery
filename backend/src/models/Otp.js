@@ -1,14 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const otpSchema = new mongoose.Schema({
-  identifier: { type: String, required: true }, // phone or email
-  code: { type: String, required: true }, // store hashed ideally
-  purpose: { type: String, enum: ['signup','forgot-password','2fa'], required: true },
-  attempts: { type: Number, default: 0 },
-  expiresAt: { type: Date, required: true },
-  createdAt: { type: Date, default: Date.now }
-});
+const otpSchema = new mongoose.Schema(
+  {
+    email: { type: String },
+    phone: { type: String },
+    code: { type: String, required: true },
+    name: { type: String },
+    password: { type: String },
 
-otpSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // TTL index if using expiresAt
+    // expires in 5 min
+    expiresAt: {
+      type: Date,
+      default: () => Date.now() + 5 * 60 * 1000,
+      index: { expires: "5m" },
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Otp', otpSchema);
+module.exports = mongoose.model("Otp", otpSchema);

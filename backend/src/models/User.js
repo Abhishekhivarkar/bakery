@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     phone: { type: String, default: "" },
-    password: { type: String, required: true, select: false }, // hide by default
+    password: { type: String, required: true, select: false },
     profilePicture: { type: String, default: "" },
     role: { type: String, default: "user", enum: ["user", "admin"] },
     emailVerified: { type: Boolean, default: false },
-    wallet: { type: Number, default: 0 }, // store smallest currency unit OR consistently use decimal
+    wallet: { type: Number, default: 0 },
     cart: [
       {
         productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
@@ -48,12 +48,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// hash password before save if modified
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+// FIXED: Correct schema name + correct function syntax
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 // compare password helper
@@ -70,18 +70,17 @@ userSchema.methods.generateJWT = function () {
   );
 };
 
-// generate password reset token (store hashed token in DB)
+// generate password reset token
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
-  // store hashed token in DB
   this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
+
   this.resetPasswordExpire = Date.now() + 60 * 60 * 1000; // 1 hour
 
-  // return plain token (send this to user)
   return resetToken;
 };
 
