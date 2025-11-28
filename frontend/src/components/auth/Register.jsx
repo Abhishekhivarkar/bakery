@@ -44,13 +44,13 @@ const Register = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex justify-center items-center bg-[#fff9f4] px-4">
       <form
         id="register-form"
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
       >
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+        <h1 className="text-3xl font-bold text-center text-[#c85a32] mb-6">
           Create Account
         </h1>
 
@@ -72,7 +72,7 @@ const Register = () => {
             id="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#dfa26d] outline-none transition"
           />
         </div>
 
@@ -90,7 +90,7 @@ const Register = () => {
             id="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#dfa26d] outline-none transition"
           />
         </div>
 
@@ -110,12 +110,12 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg pr-10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#dfa26d] outline-none transition"
             />
             <i
               className={`bx ${
                 showPassword ? "bx-hide" : "bx-show"
-              } absolute right-3 top-2.5 text-xl text-gray-600 cursor-pointer`}
+              } absolute right-3 top-3.5 text-xl text-gray-600 cursor-pointer`}
               onClick={togglePasswordVisibility}
             ></i>
           </div>
@@ -126,7 +126,7 @@ const Register = () => {
           id="registerBtn"
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 mt-2 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-60"
+          className="w-full bg-[#dfa26d] text-white font-semibold py-3 rounded-lg shadow-md hover:bg-[#e6b07c] transition-all duration-300 disabled:opacity-60"
         >
           {loading ? (
             <div className="flex items-center justify-center gap-2">
@@ -143,9 +143,9 @@ const Register = () => {
           Already have an account?{" "}
           <NavLink
             to="/login"
-            className="text-blue-600 font-medium hover:underline"
+            className="text-[#c85a32] font-semibold hover:underline"
           >
-            Login
+            Login here
           </NavLink>
         </p>
       </form>
