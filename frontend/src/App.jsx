@@ -12,6 +12,7 @@ import Login from "./components/auth/Login";
 
 import ContactUs from "./components/ContactUs";
 import ForgetPassword from "./components/auth/ForgetPassword";
+import ResetPassword from "./components/auth/ResetPassword";
 
 export default function App() {
   return (
@@ -90,6 +91,19 @@ export default function App() {
           </AuthLayout>
         }
       />
+
+
+  <Route
+        path="/reset-password"
+        element={
+          <AuthLayout>
+            <ResetPassword/>
+          </AuthLayout>
+        }
+      />
+
+
+
     </Routes>
   );
 }
