@@ -22,7 +22,7 @@ const CustomCakeBuilder = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedFlavor, setSelectedFlavor] = useState(null);
   const [selectedFrosting, setSelectedFrosting] = useState(null);
-  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
+  const [selectedColor, setSelectedColor] = useState("#d78f52");
   const [selectedToppings, setSelectedToppings] = useState([]);
   const [customMessage, setCustomMessage] = useState("");
 
@@ -536,7 +536,7 @@ const CustomCakeBuilder = () => {
                         }`}
                       >
                         <div
-                          className={`${leftWidth} ${leftShapeClass} bg-gradient-to-br from-amber-400 to-rose-400 mb-3 flex items-center justify-center `}
+                          className={`${leftWidth} ${leftShapeClass} bg-[#d78f52] mb-3 flex items-center justify-center `}
                         >
                           <span className="text-white font-bold text-sm">
                             CAKE
@@ -602,8 +602,8 @@ const CustomCakeBuilder = () => {
                         onClick={() => setSelectedSize(size)}
                         className={`px-6 py-3 rounded-full border-2 font-medium transition-all ${
                           isActive
-                            ? "border-amber-500 bg-amber-500 text-white"
-                            : "border-amber-300 text-amber-700 hover:border-amber-400 hover:bg-amber-50"
+                            ? "border-[#d78f52] bg-amber-500 text-white"
+                            : "border-[#d78f52] text-amber-700 hover:border-amber-400 hover:bg-amber-50"
                         }`}
                       >
                         {size.name} +₹{size.price || 0}
@@ -630,8 +630,8 @@ const CustomCakeBuilder = () => {
                         onClick={() => setSelectedFlavor(flavor)}
                         className={`p-4 rounded-xl border-2 transition-all ${
                           isActive
-                            ? "border-amber-500 bg-amber-50"
-                            : "border-amber-200 hover:border-amber-300"
+                            ? "border-[#d78f52] bg-amber-50"
+                            : "border-[#d78f52] hover:border-amber-300"
                         }`}
                       >
                         <h3 className="font-semibold text-amber-900 text-center">
@@ -671,8 +671,8 @@ const CustomCakeBuilder = () => {
                           onClick={() => setSelectedFrosting(frosting)}
                           className={`p-4 rounded-xl border-2 transition-all ${
                             isActive
-                              ? "border-amber-500 bg-amber-50"
-                              : "border-amber-200 hover:border-amber-300"
+                              ? "border-[#d78f52] bg-amber-50"
+                              : "border-[#d78f52] hover:border-amber-300"
                           }`}
                         >
                           <h3 className="font-semibold text-amber-900 text-center">
@@ -700,13 +700,13 @@ const CustomCakeBuilder = () => {
                           onClick={() => setSelectedColor(color.value)}
                           className={`flex flex-col items-center p-2 rounded-lg transition-all ${
                             isActive
-                              ? "ring-2 ring-amber-500 ring-offset-2"
+                              ? "ring-2 ring-[#d78f52] ring-offset-2"
                               : ""
                           }`}
                           title={color.name}
                         >
                           <div
-                            className="w-10 h-10 rounded-full border border-amber-300"
+                            className="w-10 h-10 rounded-full border border-[#d78f52]"
                             style={{ backgroundColor: color.value }}
                           ></div>
                           <span className="text-xs text-amber-700 mt-1">
@@ -741,8 +741,8 @@ const CustomCakeBuilder = () => {
                         onClick={() => toggleTopping(topping)}
                         className={`flex flex-col items-center p-4 rounded-xl border-2 transition-all ${
                           isActive
-                            ? "border-amber-500 bg-amber-50"
-                            : "border-amber-200 hover:border-amber-300"
+                            ? "border-[#d78f52] bg-amber-50"
+                            : "border-[#d78f52] hover:border-amber-300"
                         }`}
                       >
                         <div
@@ -778,7 +778,7 @@ const CustomCakeBuilder = () => {
                   <input
                     type="text"
                     placeholder="e.g., Happy Birthday Alex!"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-[#d78f52] focus:border-[#d78f52] focus:ring-2 focus:ring-[#d78f52] outline-none transition-all"
                     value={customMessage}
                     onChange={(e) => setCustomMessage(e.target.value)}
                   />
@@ -789,7 +789,7 @@ const CustomCakeBuilder = () => {
                   </label>
                   <textarea
                     placeholder="Any special requests or dietary requirements..."
-                    className="w-full px-4 py-3 rounded-xl border-2 border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-[#d78f52] focus:border-[#d78f52] focus:ring-2 focus:ring-[#d78f52] outline-none transition-all"
                     rows="3"
                   />
                 </div>
@@ -807,20 +807,20 @@ const CustomCakeBuilder = () => {
                 </h2>
 
                 {/* Cake Preview */}
-                <div className="mb-6 p-4 bg-gradient-to-br from-amber-100 to-rose-50 rounded-xl border border-amber-200">
+                <div className="mb-6 p-4 bg-[#fff7ed] rounded-xl border border-[#d78f52]">
                   <div className="flex items-center justify-center mb-4">
                     {/* dynamic shaped preview */}
                     <div
                       className={`${getShapeClass(
                         previewShapeName
-                      )} flex items-center justify-center border-4 border-amber-300`}
+                      )} flex items-center justify-center border-4 border-[#d78f52] `}
                       style={{
                         width: previewStyleSize().width + "px",
                         height: previewStyleSize().height + "px",
                         backgroundColor: selectedColor,
                       }}
                     >
-                      <span className="text-amber-800 font-bold">CAKE</span>
+                      <span className="text-[#f7ede2] font-bold">CAKE</span>
                     </div>
                   </div>
 
@@ -888,25 +888,25 @@ const CustomCakeBuilder = () => {
                   {showPriceBreakdown && (
                     <>
                       {selectedShape && (
-                        <div className="flex justify-between text-sm text-amber-600">
+                        <div className="flex justify-between text-sm text-[#d78f52]">
                           <span>{selectedShape.name} Shape:</span>
                           <span>+₹{selectedShape.price || 0}</span>
                         </div>
                       )}
                       {selectedSize && (
-                        <div className="flex justify-between text-sm text-amber-600">
+                        <div className="flex justify-between text-sm text-[#d78f52]">
                           <span>{selectedSize.name} Size:</span>
                           <span>+₹{selectedSize.price || 0}</span>
                         </div>
                       )}
                       {selectedFlavor && selectedFlavor.price > 0 && (
-                        <div className="flex justify-between text-sm text-amber-600">
+                        <div className="flex justify-between text-sm text-[#d78f52]">
                           <span>{selectedFlavor.name} Flavor:</span>
                           <span>+₹{selectedFlavor.price || 0}</span>
                         </div>
                       )}
                       {selectedFrosting && selectedFrosting.price > 0 && (
-                        <div className="flex justify-between text-sm text-amber-600">
+                        <div className="flex justify-between text-sm text-[#d78f52]">
                           <span>{selectedFrosting.name} Frosting:</span>
                           <span>+₹{selectedFrosting.price || 0}</span>
                         </div>
@@ -914,7 +914,7 @@ const CustomCakeBuilder = () => {
                       {selectedToppings.map((topping, index) => (
                         <div
                           key={index}
-                          className="flex justify-between text-sm text-amber-600"
+                          className="flex justify-between text-sm text-[#d78f52]"
                         >
                           <span>{topping.name} Topping:</span>
                           <span>+₹{topping.price || 0}</span>
@@ -923,10 +923,10 @@ const CustomCakeBuilder = () => {
                     </>
                   )}
 
-                  <div className="border-t border-amber-200 pt-3">
+                  <div className="border-t border-[#d78f52] pt-3">
                     <div className="flex justify-between text-xl font-bold">
-                      <span className="text-amber-800">Total Price:</span>
-                      <span className="text-amber-700">
+                      <span className="text-[#d78f52]">Total Price:</span>
+                      <span className="text-[#d78f52]">
                         {calculatingPrice
                           ? "Calculating..."
                           : `₹${prices.totalPrice}`}
@@ -942,8 +942,8 @@ const CustomCakeBuilder = () => {
                     disabled={calculatingPrice}
                     className={`w-full py-3 rounded-xl font-bold text-lg transition-all ${
                       calculatingPrice
-                        ? "bg-amber-300 cursor-not-allowed"
-                        : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-lg hover:shadow-xl"
+                        ? "bg-[#d78f52] cursor-not-allowed"
+                        : "bg-gradient-to-r from-[#d78f52] to-[#d78f52] hover:from-[#d78f52] hover:to-[#d78f52] text-white shadow-lg hover:shadow-xl"
                     }`}
                   >
                     {calculatingPrice
@@ -987,12 +987,38 @@ const CustomCakeBuilder = () => {
         /* Heart shape clip */
         .clip-heart {
           clip-path: polygon(
-            50% 80%,
-            0% 35%,
-            25% 0%,
-            50% 25%,
-            75% 0%,
-            100% 35%
+            50% 90%,
+            42% 82%,
+            36% 75%,
+            30% 68%,
+            25% 60%,
+            20% 52%,
+            16% 44%,
+            13% 36%,
+            11% 28%,
+            12% 20%,
+            16% 14%,
+            22% 10%,
+            30% 8%,
+            38% 10%,
+            44% 14%,
+            48% 20%,
+            50% 26%,
+            52% 20%,
+            56% 14%,
+            62% 10%,
+            70% 8%,
+            78% 10%,
+            84% 14%,
+            88% 20%,
+            89% 28%,
+            87% 36%,
+            84% 44%,
+            80% 52%,
+            75% 60%,
+            70% 68%,
+            64% 75%,
+            58% 82%
           );
         }
       `}</style>

@@ -334,7 +334,7 @@ export default function CreateProductModal({ onClose, onSave }) {
                   className="border border-gray-300 p-3 rounded w-full focus:ring-2 focus:ring-[#dda56a] focus:border-transparent"
                   required
                 >
-                  <option value="">-- Select Category --</option>
+                  <option value="">Select Category</option>
                   {categoryOptions.map((c, i) => (
                     <option key={i} value={c}>
                       {c}
@@ -379,7 +379,7 @@ export default function CreateProductModal({ onClose, onSave }) {
                     value={form.flavour}
                     className="border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-[#dda56a] focus:border-transparent"
                   >
-                    <option value="">-- Select Flavour --</option>
+                    <option value="">Select Flavour</option>
                     {flavourOptions.map((f, i) => (
                       <option key={i} value={f}>
                         {f}
@@ -422,7 +422,7 @@ export default function CreateProductModal({ onClose, onSave }) {
                     value={form.weight}
                     className="border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-[#dda56a] focus:border-transparent"
                   >
-                    <option value="">-- Select Weight --</option>
+                    <option value="">Select Weight</option>
                     {weightOptions.map((w, i) => (
                       <option key={i} value={w}>
                         {w}

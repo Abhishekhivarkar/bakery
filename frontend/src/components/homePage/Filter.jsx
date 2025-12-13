@@ -378,6 +378,15 @@ export default function FilterPage() {
       </div>
     );
   }
+  const scrollCategory = (category, direction) => {
+    const container = document.getElementById(`scroll-${category}`);
+    if (!container) return;
+
+    container.scrollBy({
+      left: direction === "left" ? -300 : 300,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#fff9f4] pt-20">
@@ -477,7 +486,7 @@ export default function FilterPage() {
                           featuredProducts[currentSlide]?.images?.[0]
                         )}
                         alt={featuredProducts[currentSlide]?.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-40 object-cover"
                       />
                     </div>
 
@@ -627,7 +636,7 @@ export default function FilterPage() {
       )}
 
       {/* Main Content */}
-      <div className="w-full px-4 py-4 h-full">
+      <div className="w-full px-4 py-4 h-[100vh] overflow-y-scroll scrollbar-none">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Filter Sidebar */}
           {/* Mobile Overlay */}
@@ -647,8 +656,8 @@ export default function FilterPage() {
           >
             <div className="bg-white rounded-xl shadow-lg p-6 h-full lg:max-h-[90vh] lg:sticky lg:top-4 overflow-y-auto">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                <h3 className="text-xl font-bold text-[#8b5e3c] flex items-center gap-2">
-                  <FaFilter className="text-[#8b5e3c]" /> Filters
+                <h3 className="text-xl font-bold text-[#d78f52] flex items-center gap-2">
+                  <FaFilter className="text-[#d78f52]" /> Filters
                 </h3>
                 <button
                   onClick={() => setShowFilters(false)}
@@ -673,7 +682,7 @@ export default function FilterPage() {
                       handleFilterChange("search", e.target.value)
                     }
                     placeholder="Search products..."
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#dda56a] focus:border-[#dda56a] transition-all bg-white"
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d78f52] focus:border-[#d78f52] transition-all bg-white"
                   />
                 </div>
               </div>
@@ -690,7 +699,7 @@ export default function FilterPage() {
 
                   {/* Active Range */}
                   <div
-                    className="absolute h-2 bg-[#8b5e3c] rounded-lg top-1/2 -translate-y-1/2 transition-all duration-300 ease-out"
+                    className="absolute h-2 bg-[#d78f52] rounded-lg top-1/2 -translate-y-1/2 transition-all duration-300 ease-out"
                     style={{
                       left: `${(priceRange[0] / maxPrice) * 100}%`,
                       width: `${
@@ -734,7 +743,7 @@ export default function FilterPage() {
                   />
 
                   {/* Min/Max Labels */}
-                  <div className="flex justify-between text-xs text-gray-500 pt-4">
+                  <div className="flex justify-between text-xs text-gray-500 pt-4 pt-5">
                     <span className="font-medium">₹0</span>
                     <span className="font-medium">
                       ₹{maxPrice.toLocaleString()}
@@ -753,7 +762,7 @@ export default function FilterPage() {
                     onClick={() => handleFilterChange("weight", "")}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                       filters.weight === ""
-                        ? "bg-[#8b5e3c] text-white shadow-md"
+                        ? "bg-[#d78f52] text-white shadow-md"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300"
                     }`}
                   >
@@ -773,7 +782,7 @@ export default function FilterPage() {
                       }
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         filters.weight === weight
-                          ? "bg-[#8b5e3c] text-white shadow-md"
+                          ? "bg-[#d78f52] text-white shadow-md"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300"
                       }`}
                     >
@@ -793,7 +802,7 @@ export default function FilterPage() {
                     onClick={() => handleFilterChange("flavor", "")}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                       filters.flavor === ""
-                        ? "bg-[#8b5e3c] text-white shadow-md"
+                        ? "bg-[#d78f52] text-white shadow-md"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300"
                     }`}
                   >
@@ -819,7 +828,7 @@ export default function FilterPage() {
                       }
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         filters.flavor === flavor
-                          ? "bg-[#8b5e3c] text-white shadow-md"
+                          ? "bg-[#d78f52] text-white shadow-md"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300"
                       }`}
                     >
@@ -833,7 +842,7 @@ export default function FilterPage() {
               <div className="flex gap-2 mt-4">
                 <button
                   onClick={applyFilters}
-                  className="flex-1 py-2.5 px-4 bg-[#8b5e3c] hover:bg-[#6f472b] text-white rounded-lg transition-all font-medium shadow-md hover:shadow-lg"
+                  className="flex-1 py-2.5 px-4 bg-[#d78f52] hover:bg-[#d78f52] text-white rounded-lg transition-all font-medium shadow-md hover:shadow-lg"
                 >
                   Apply Filters
                 </button>
@@ -848,31 +857,31 @@ export default function FilterPage() {
           </aside>
 
           {/* Main Content Area */}
-          <div className="flex-1">
+          <div className="flex-1 max-w-[100%] w-full overflow-x-hidden">
             {/* Sort and Filter Toggle */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="lg:hidden flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-md text-[#8b5e3c] font-medium hover:bg-gray-50"
+                className="lg:hidden flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-md text-[#d78f52] font-medium hover:bg-gray-50"
               >
                 <FaFilter /> {showFilters ? "Hide" : "Show"} Filters
               </button>
 
-              <div className="flex items-center gap-3 flex-1 sm:justify-end">
+              {/* <div className="flex items-center gap-3 sm:ml-auto w-fit">
                 <span className="text-sm font-medium text-gray-700">
                   Sort by:
                 </span>
                 <select
                   value={filters.sort}
                   onChange={(e) => handleFilterChange("sort", e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#dda56a] focus:border-transparent bg-white shadow-sm"
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#d78f52] focus:border-transparent bg-white shadow-sm"
                 >
                   <option value="">Newest First</option>
                   <option value="price_asc">Price: Low to High</option>
                   <option value="price_desc">Price: High to Low</option>
                   <option value="name_asc">Name: A to Z</option>
                 </select>
-              </div>
+              </div> */}
             </div>
 
             {/* Results Count */}
@@ -905,76 +914,110 @@ export default function FilterPage() {
                       <h2 className="text-2xl md:text-3xl font-bold text-[#8b5e3c] mb-6 pb-3 border-b-2 border-[#e2bf9d]">
                         {category}
                       </h2>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {products.map((product) => (
-                          <motion.div
-                            key={product._id}
-                            whileHover={{ y: -5 }}
-                            onClick={() => handleProductClick(product)}
-                            className="bg-gradient-to-br from-[#fff9f4] to-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-transparent hover:border-[#c89f7a]/60 flex flex-col cursor-pointer"
-                          >
-                            <div className="flex-shrink-0">
-                              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#f0e3d6] to-[#fff9f4]">
-                                <img
-                                  src={getImageUrl(product.images?.[0])}
-                                  alt={product.name}
-                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                                  onError={(e) => {
-                                    e.target.src =
-                                      "https://via.placeholder.com/400x400?text=No+Image";
-                                  }}
-                                />
-                                {product.isFeatured && (
-                                  <span className="absolute top-2 right-2 bg-[#8b5e3c] text-white text-xs font-bold px-2 py-1 rounded-full">
-                                    Featured
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                            <div className="p-4 flex flex-col flex-grow">
-                              <h3 className="text-lg font-bold text-[#8b5e3c] mb-2 line-clamp-2 hover:text-[#6f472b] transition-colors">
-                                {product.name}
-                              </h3>
-                              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                                {product.description}
-                              </p>
-                              <div className="flex items-center justify-between mb-3">
-                                <span className="text-xl font-bold text-[#8b5e3c]">
-                                  ₹{product.price}
-                                </span>
-                                {product.rating > 0 && (
-                                  <div className="flex items-center gap-1">
-                                    <FaStar className="text-yellow-400 text-sm" />
-                                    <span className="text-sm text-gray-600">
-                                      {product.rating.toFixed(1)}
+                      <div className="relative">
+                        {/* LEFT BUTTON */}
+                        <button
+                          onClick={() => scrollCategory(category, "left")}
+                          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 
+               bg-white shadow-lg p-2 rounded-full z-10"
+                        >
+                          <FaChevronLeft className="text-[#8b5e3c]" />
+                        </button>
+
+                        {/* HORIZONTAL SCROLL CONTAINER */}
+                        <div
+                          id={`scroll-${category}`}
+                          className="flex gap-6 w-full max-w-full overflow-x-hidden"
+                        >
+                          {products.map((product) => (
+                            <motion.div
+                              key={product._id}
+                              whileHover={{ y: -5 }}
+                              onClick={() => handleProductClick(product)}
+                              className="bg-gradient-to-br from-[#fff9f4] to-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-transparent hover:border-[#c89f7a]/60 flex flex-col cursor-pointer min-w-[220px] max-w-[220px]"
+                            >
+                              {/* ⭐⭐⭐ YOUR COMPLETE EXISTING CARD CODE — NOTHING CHANGED ⭐⭐⭐ */}
+
+                              <div className="flex-shrink-0">
+                                <div className="relative h-40 overflow-hidden bg-gradient-to-br from-[#f0e3d6] to-[#fff9f4]">
+                                  <img
+                                    src={getImageUrl(product.images?.[0])}
+                                    alt={product.name}
+                                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                                    onError={(e) => {
+                                      e.target.src =
+                                        "https://via.placeholder.com/400x400?text=No+Image";
+                                    }}
+                                  />
+                                  {product.isFeatured && (
+                                    <span className="absolute top-2 right-2 bg-[#8b5e3c] text-white text-xs font-bold px-2 py-1 rounded-full">
+                                      Featured
                                     </span>
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="p-4 flex flex-col flex-grow">
+                                <h3 className="text-lg font-bold text-[#8b5e3c] mb-2 line-clamp-2 hover:text-[#6f472b] transition-colors">
+                                  {product.name}
+                                </h3>
+
+                                <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                                  {product.description}
+                                </p>
+
+                                <div className="flex items-center justify-between mb-3">
+                                  <span className="text-xl font-bold text-[#8b5e3c]">
+                                    ₹{product.price}
+                                  </span>
+
+                                  {product.rating > 0 && (
+                                    <div className="flex items-center gap-1">
+                                      <FaStar className="text-yellow-400 text-sm" />
+                                      <span className="text-sm text-gray-600">
+                                        {product.rating.toFixed(1)}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {product.stock <= 0 ? (
+                                  <p className="text-red-500 text-sm mb-3 text-center py-2 bg-red-50 rounded">
+                                    Out of Stock
+                                  </p>
+                                ) : (
+                                  <div className="flex flex-col gap-2 mt-auto pt-3">
+                                    <button
+                                      onClick={(e) =>
+                                        handleAddToCart(e, product)
+                                      }
+                                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#8b5e3c] text-white rounded-lg hover:bg-[#6f472b] transition-colors font-medium text-sm shadow-md hover:shadow-lg"
+                                    >
+                                      <FaShoppingCart className="text-sm" />
+                                      Add to Cart
+                                    </button>
+
+                                    <button
+                                      onClick={(e) => handleBuyNow(e, product)}
+                                      className="w-full px-4 py-2.5 bg-gradient-to-r from-[#dda56a] to-[#e8b381] text-white rounded-lg hover:from-[#c8955a] hover:to-[#d8a371] transition-all font-medium text-sm shadow-md hover:shadow-lg"
+                                    >
+                                      Buy Now
+                                    </button>
                                   </div>
                                 )}
                               </div>
-                              {product.stock <= 0 ? (
-                                <p className="text-red-500 text-sm mb-3 text-center py-2 bg-red-50 rounded">
-                                  Out of Stock
-                                </p>
-                              ) : (
-                                <div className="flex flex-col gap-2 mt-auto pt-3">
-                                  <button
-                                    onClick={(e) => handleAddToCart(e, product)}
-                                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#8b5e3c] text-white rounded-lg hover:bg-[#6f472b] transition-colors font-medium text-sm shadow-md hover:shadow-lg"
-                                  >
-                                    <FaShoppingCart className="text-sm" />
-                                    Add to Cart
-                                  </button>
-                                  <button
-                                    onClick={(e) => handleBuyNow(e, product)}
-                                    className="w-full px-4 py-2.5 bg-gradient-to-r from-[#dda56a] to-[#e8b381] text-white rounded-lg hover:from-[#c8955a] hover:to-[#d8a371] transition-all font-medium text-sm shadow-md hover:shadow-lg"
-                                  >
-                                    Buy Now
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          </motion.div>
-                        ))}
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        {/* RIGHT BUTTON */}
+                        <button
+                          onClick={() => scrollCategory(category, "right")}
+                          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 
+               bg-white shadow-lg p-2 rounded-full z-10"
+                        >
+                          <FaChevronRight className="text-[#8b5e3c]" />
+                        </button>
                       </div>
                     </motion.section>
                   )
@@ -1013,7 +1056,7 @@ export default function FilterPage() {
                   <img
                     src={getImageUrl(selectedProduct.images?.[0])}
                     alt={selectedProduct.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-40 object-cover"
                     onError={(e) => {
                       e.target.src =
                         "https://via.placeholder.com/400x400?text=No+Image";

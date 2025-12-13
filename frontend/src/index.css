@@ -17,6 +17,18 @@
   scroll-snap-type: x mandatory;
   padding-bottom: 10px;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+html,
+body {
+  overflow-x: hidden;
+}
 
 .horizontal-scroll::-webkit-scrollbar {
   display: none;

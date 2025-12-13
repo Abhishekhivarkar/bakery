@@ -500,11 +500,6 @@ export default function Profile() {
                   <button className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-orange-200/30">
                     Setting
                   </button>
-                  <Link to={"/admin-login"}>
-                    <button className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-orange-200/30">
-                      Admin Login
-                    </button>
-                  </Link>
                 </div>
               </div>
 

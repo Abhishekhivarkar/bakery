@@ -123,7 +123,7 @@ export default function EditProfile() {
     );
 
   return (
-    <div className="bg-[#f8f7f6]">
+    <div className="pt-20 bg-[#f8f7f6]">
       <div className="max-w-4xl mx-auto p-6 py-10">
         <div className="bg-white shadow-lg rounded-2xl p-8">
           <h2 className="text-3xl font-bold mb-6 text-gray-900">

@@ -486,7 +486,7 @@ const OrderSuccess = () => {
             </svg>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3">
-            Order Successful! 🎉
+            Order Successful!
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-4 md:mb-6">
             Thank you for your purchase. Your order has been confirmed.
